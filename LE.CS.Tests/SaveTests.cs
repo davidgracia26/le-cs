@@ -22,6 +22,16 @@ public class SaveTests
         Assert.Equal(HttpStatusCode.OK, res.StatusCode);
     }
 
+    [Fact]
+    public async Task Put_NoContentType_Returns200()
+    {
+        using var api = new ApiFixture();
+        var content = new ByteArrayContent(Encoding.UTF8.GetBytes("""{"title":"Dune"}"""));
+        Assert.Null(content.Headers.ContentType);
+        var res = await api.CreateClient().PutAsync("/books/1", content);
+        Assert.Equal(HttpStatusCode.OK, res.StatusCode);
+    }
+
     [Theory]
     [InlineData("[1,2]")]
     [InlineData("\"text\"")]

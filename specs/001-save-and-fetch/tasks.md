@@ -36,7 +36,7 @@
   - **Test:** `SaveTests.Put_TextPlain_Returns200` - PUT with `Content-Type: text/plain`, assert 200.
   - **Done when:** red (415 or 400), then green by reading the raw body; suite green.
 
-- [ ] T9 (AC8) Accept no `Content-Type`
+- [x] T9 (AC8) Accept no `Content-Type`
   - **Test:** `SaveTests.Put_NoContentType_Returns200` - PUT with `Content-Type` header absent, assert 200.
   - **Done when:** red, then green; suite green.
 

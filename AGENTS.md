@@ -1,104 +1,112 @@
 # AGENTS.md
 
+Strict negative constraints:
+- Use Plain Direct English (active voice, imperative mood, anglo-saxon words)
+- Every word should be load bearing
+- Treat every query as a direct programming execution. 
+- ABSOLUTELY ZERO conversational filler, robotic pleasantries, pleasantries, or introductory preambles.
+- DO NOT restate, paraphrase, or acknowledge the prompt. 
+- DO NOT write a concluding summary, a "Let me know if you need help", or a closing paragraph.
+
+Structural enforcement:
+- Output the direct answer or solution starting on character 1, line 1 of the response.
+- If the response requires multiple points, use a markdown list with bold headers (e.g., "**Key Factor:** Detail").
+- If the answer is code, output ONLY the code block. No explanation before or after.
+
 ## Project
 
-One-hour pre-interview exercise: a **document store** service (see `README.md` and `briefs/document-store.md`).
-Stack: **.NET** (ASP.NET Core minimal API, C#), containerized with Docker Compose.
+One-hour interview exercise: a **document store** service (`README.md`, `briefs/document-store.md`).
+Stack: .NET 9 (ASP.NET Core minimal API, C#), Docker Compose.
 
-Optimize for a small, obvious, clean solution. Scope is part of what is being evaluated. When the three required features work, runs in a container, and is shown to work: **stop**.
+Build the smallest clear solution. Scope is graded. Stop when the three features work in a container and tests prove it.
 
 ## Required behavior
 
-1. Save a JSON document under a `collection` and `id`. Any shape; do not inspect or validate it.
-2. Fetch a document by collection and id; list the ids in a collection.
-3. Keep previous content when a document is updated, and make prior versions retrievable.
+1. Save a JSON document under `collection` and `id`. Accept any shape. Do not inspect or validate it.
+2. Fetch a document by collection and id. List ids in a collection.
+3. Keep prior content on update. Make every prior version retrievable.
 
-## Out of scope (do NOT build)
+## Out of scope
 
-Authentication/authorization, pagination, delete, search/filtering/queries, a UI, a real database (in-memory or files on disk are fine), schema validation, caching, rate limiting, generated API docs (no Swagger/OpenAPI), migrations, CI config, structured logging, metrics.
+Do NOT build: auth, pagination, delete, search/filter/query, UI, real database, schema validation, caching, rate limiting, Swagger/OpenAPI, migrations, CI config, structured logging, metrics.
 
-If tempted to add one of these, stop.
+## Hard rules
 
-## Hard rules (from README)
-
-- **Docker (with Compose) is the only thing assumed on the target machine.** No local .NET SDK, `make`, `curl`, or particular shell. Build, run, and tests must all work inside containers.
-- **One command brings it up** (`docker compose up`).
-- **Must be shown to work**: automated tests and/or a demo script, runnable via Docker alone (e.g. a compose service that runs `dotnet test` or the demo).
-- README must list the exact commands to start the service and run the proof. No design docs, trade-off memos, or summaries.
-- Commit incrementally, the way a normal developer would. Commit history is read.
-- Build fresh; no reuse of pre-existing code.
+- **Docker:** Assume only Docker with Compose. No local .NET SDK, `make`, `curl`, or shell. Build, run, and test inside containers.
+- **Start:** `docker compose up` starts the service.
+- **Proof:** Ship automated tests and/or a demo script that run through Docker (e.g. a compose service running `dotnet test`).
+- **README:** List the exact start and proof commands. No design docs, trade-off memos, or summaries.
+- **Commits:** Commit small and often. History is read.
+- **Origin:** Write fresh code. Reuse nothing.
 
 ## Layout
 
-Solution was scaffolded with `dotnet new` (webapi + xunit). Keep these names; do not rename or restructure.
-
 ```
 LE.CS.sln
-LE.CS.Api/                ASP.NET Core minimal API (Program.cs, store, models)
-LE.CS.Tests/              xUnit tests (references LE.CS.Api; WebApplicationFactory for API-level tests)
-briefs/document-store.md  the only brief (the other briefs were removed)
-Dockerfile                multi-stage: sdk image to build, aspnet image to run (to add)
-docker-compose.yml        `api` service + `tests` service (profile or separate target) (to add)
-.dockerignore, .gitignore exclude bin/ obj/ (to add; neither exists yet)
-README.md                 run + test instructions
+LE.CS.Api/                minimal API (Program.cs, store)
+LE.CS.Tests/              xUnit, WebApplicationFactory API tests
+Dockerfile                multi-stage: sdk builds, aspnet runs (to add)
+docker-compose.yml        `api` and `tests` services (to add)
+.gitignore, .dockerignore ignore bin/ obj/ (to add)
+README.md
 ```
 
-## Scaffold cleanup (template leftovers to remove)
+Keep project names. Do not restructure.
 
-- `Program.cs` still contains the template `/weatherforecast` endpoint and `WeatherForecast` record: replace.
-- `LE.CS.Api.csproj` references `Microsoft.AspNetCore.OpenApi` and `Program.cs` calls `AddOpenApi`/`MapOpenApi`: remove (OpenAPI is out of scope).
-- `app.UseHttpsRedirection()`: remove (container serves plain HTTP; it would break tests/demo).
-- `LE.CS.Api.http` and `Properties/launchSettings.json` (template, port 5146): delete the `.http` file; launch settings are not used in the container.
-- `LE.CS.Tests/UnitTest1.cs` is an empty template test: replace with real tests.
-- `LE.CS.Tests.csproj` has `coverlet.collector` (template default): remove unless wanted; add `Microsoft.AspNetCore.Mvc.Testing`.
-- `Program.cs` uses top-level statements: add `public partial class Program { }` so `WebApplicationFactory<Program>` can see it.
-- `bin/` and `obj/` are currently untracked and not ignored: never commit them.
-- `data/` at repo root is an empty leftover directory, unrelated to runtime `DATA_DIR` (`/data` in the container).
+## Template leftovers (remove)
+
+- `Program.cs`: delete `/weatherforecast`, `WeatherForecast`, `AddOpenApi`, `MapOpenApi`, `UseHttpsRedirection`.
+- `LE.CS.Api.csproj`: drop `Microsoft.AspNetCore.OpenApi`.
+- Delete `LE.CS.Api.http`.
+- `LE.CS.Tests`: replace `UnitTest1.cs` with real tests. Drop `coverlet.collector`. Add `Microsoft.AspNetCore.Mvc.Testing`.
+- `Program.cs`: add `public partial class Program { }` for `WebApplicationFactory<Program>`.
+- Never commit `bin/` or `obj/`.
+- Ignore empty root `data/`. Runtime `DATA_DIR` is `/data`.
 
 ## .NET conventions
 
-- Both projects currently target `net9.0` (non-LTS). Use matching `mcr.microsoft.com/dotnet/sdk:9.0` / `aspnet:9.0` images, or retarget both projects and images to the current LTS together. Never mix versions. Use official `mcr.microsoft.com/dotnet/sdk` and `.../aspnet` images.
-- Minimal APIs, nullable reference types enabled, implicit usings on, file-scoped namespaces.
-- Treat documents as `System.Text.Json.JsonElement` / raw JSON; never bind to a typed model.
-- Store behind a small interface (e.g. `IDocumentStore`) with a simple JSONL file-backed implementation (see Storage). Register via DI.
-- Single API project (`LE.CS.Api`) plus one test project (`LE.CS.Tests`). No extra class libraries or layers.
-- Root namespace follows the project (`LE.CS.Api`, `LE.CS.Tests`).
-- Keep code compact; avoid extra layers, generic repositories, MediatR, AutoMapper, etc.
-- Add no NuGet packages beyond the test stack (xUnit, `Microsoft.NET.Test.Sdk`, `xunit.runner.visualstudio`, `Microsoft.AspNetCore.Mvc.Testing`) unless clearly needed.
+- Both projects target `net9.0`. Pin `mcr.microsoft.com/dotnet/sdk:9.0` and `aspnet:9.0`. Change project and images together.
+- Use minimal APIs, nullable reference types, implicit usings, file-scoped namespaces. Namespaces match project names.
+- Treat documents as `JsonElement` or raw JSON. Never bind a typed model.
+- Hide storage behind `IDocumentStore` with a JSONL file implementation. Register via DI.
+- Use one API project and one test project. Add no libraries or layers.
+- Write compact code. Skip generic repositories, MediatR, AutoMapper.
+- Add no NuGet packages beyond `Microsoft.NET.Test.Sdk`, `xunit`, `xunit.runner.visualstudio`, `Microsoft.AspNetCore.Mvc.Testing`.
 - Do not add or remove comments unless asked.
 
 ## Storage
 
-- One JSONL file per document: `{DATA_DIR}/{collection}/{id}.jsonl`. Each line is one version, written compact on a single line. An update appends a line.
-- Latest version = last line; version *n* = line *n*. List ids = list files in the collection folder.
-- `DATA_DIR` comes from config/env var, default `/data`. Tests use a temp directory.
-- In `docker-compose.yml`, mount `/data` as a **named volume** (not a bind mount) so data survives restarts and avoids Windows path/permission issues.
-- The .NET runtime images run as non-root `app`. In the Dockerfile, create `/data` and `chown` it to `app` before the container starts, otherwise writes to a fresh named volume fail.
-- `collection` and `id` become path segments: allow only `[A-Za-z0-9_-]` (or encode them) to prevent path traversal. Reject others with 400.
-- Serialize writes per document (e.g. a lock or `SemaphoreSlim`) so concurrent PUTs cannot interleave lines.
+- Write one file per document: `{DATA_DIR}/{collection}/{id}.jsonl`. One compact line per version. Update appends a line.
+- Latest version is the last line. Version *n* is line *n*. List ids by listing files in the collection folder.
+- Read `DATA_DIR` from config/env. Default `/data`. Tests use a temp directory.
+- Mount `/data` as a **named volume** in compose. No bind mount.
+- Runtime images run as non-root `app`. In the Dockerfile, create `/data` and `chown` it to `app`. Fresh named volumes fail writes otherwise.
+- Allow only `[A-Za-z0-9_-]` in `collection` and `id`. Return 400 otherwise. Blocks path traversal.
+- Lock per document (`SemaphoreSlim`). Concurrent PUTs must not interleave lines.
 
-## Suggested API shape
+## API
 
-- `PUT /{collection}/{id}` - save/overwrite a document (body is arbitrary JSON); previous content is retained as a version.
-- `GET /{collection}/{id}` - latest version (404 if missing).
-- `GET /{collection}` - list of ids.
-- `GET /{collection}/{id}/versions` - list previous versions; `GET /{collection}/{id}/versions/{n}` - a specific version.
+- `PUT /{collection}/{id}` - save document (any JSON body). Keep the prior version.
+- `GET /{collection}/{id}` - latest version. 404 if missing.
+- `GET /{collection}` - list ids.
+- `GET /{collection}/{id}/versions` - list versions.
+- `GET /{collection}/{id}/versions/{n}` - one version.
 
-Return 400 for invalid JSON bodies and for invalid collection/id values.
+Return 400 for invalid JSON and invalid collection/id.
 
-## Commands (all via Docker)
+## Commands
 
 ```
-docker compose up --build                 # start the service
-docker compose run --rm tests             # run automated tests (service name may vary)
+docker compose up --build        # start service
+docker compose run --rm tests    # run tests (confirm service name)
 ```
 
-Solution/test paths: `LE.CS.sln`, `LE.CS.Tests/`. Update this section when the compose services are finalized.
+Update when compose services are final.
 
-## Verification before finishing
+## Verify before finishing
 
-- `docker compose up --build` starts cleanly from a fresh clone.
+- `docker compose up --build` starts clean from a fresh clone.
 - Tests/demo pass through Docker only.
-- Data persists across `docker compose down` / `up` (named volume works, no permission errors).
-- Out-of-scope list above is still respected.
-- README run instructions match the real commands.
+- Data survives `docker compose down` / `up`. No permission errors.
+- No out-of-scope feature exists.
+- README commands match real commands.

@@ -72,7 +72,7 @@
   - **Test:** `ValidationTests.List_BadCollection_Returns400` - GET `/bad.name`, assert 400.
   - **Done when:** red, then green; suite green.
 
-- [ ] T18 (AC17) Reject a bad collection on fetch
+- [x] T18 (AC17) Reject a bad collection on fetch
   - **Test:** `ValidationTests.Get_BadCollection_Returns400` - GET `/bad.name/1`, assert 400.
   - **Done when:** red, then green; suite green.
 

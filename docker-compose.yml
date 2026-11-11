@@ -1,0 +1,7 @@
+services:
+  tests:
+    profiles: ["tests"]
+    build:
+      context: .
+      target: tests
+    pull_policy: build

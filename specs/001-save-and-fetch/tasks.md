@@ -64,7 +64,7 @@
   - **Test:** `ValidationTests.Put_BadCollection_Returns400` - PUT `/bad.name/1`, assert 400.
   - **Done when:** red, then green with a `[A-Za-z0-9_-]{1,100}` check; suite green.
 
-- [ ] T16 (AC15) Reject a bad id on PUT
+- [x] T16 (AC15) Reject a bad id on PUT
   - **Test:** `ValidationTests.Put_BadId_Returns400` - PUT `/books/bad.id`, assert 400.
   - **Done when:** red, then green; suite green.
 

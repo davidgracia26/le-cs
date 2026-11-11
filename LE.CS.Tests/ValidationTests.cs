@@ -51,4 +51,12 @@ public class ValidationTests
         var res = await api.CreateClient().GetAsync("/bad.name/1");
         Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
     }
+
+    [Fact]
+    public async Task Put_ValidChars_Returns200()
+    {
+        using var api = new ApiFixture();
+        var res = await api.CreateClient().PutJson("/Books_2/doc-1", "{}");
+        Assert.Equal(HttpStatusCode.OK, res.StatusCode);
+    }
 }

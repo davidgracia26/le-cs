@@ -76,7 +76,7 @@
   - **Test:** `ValidationTests.Get_BadCollection_Returns400` - GET `/bad.name/1`, assert 400.
   - **Done when:** red, then green; suite green.
 
-- [ ] T19 (AC18) Accept letters, digits, `_`, `-`
+- [x] T19 (AC18) Accept letters, digits, `_`, `-`
   - **Test:** `ValidationTests.Put_ValidChars_Returns200` - PUT `/Books_2/doc-1`, assert 200.
   - **Done when:** test green on arrival is allowed only if T15 already allows it; else red then green; suite green.
 

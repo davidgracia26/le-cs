@@ -56,7 +56,7 @@
   - **Test:** `ValidationTests.Put_InvalidJson_Returns400` - PUT `/books/1` body `{bad`, assert 400.
   - **Done when:** red (500), then green; suite green.
 
-- [ ] T14 (AC13) Reject an empty body
+- [x] T14 (AC13) Reject an empty body
   - **Test:** `ValidationTests.Put_EmptyBody_Returns400` - PUT `/books/1` with empty body, assert 400.
   - **Done when:** red, then green; suite green.
 

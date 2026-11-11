@@ -32,7 +32,7 @@
   - **Test:** `FetchTests.Get_Keeps_Key_Order` - PUT `{"b":1,"a":2}`, GET, assert body `{"b":1,"a":2}`.
   - **Done when:** red, then green by writing `JsonElement` values; suite green.
 
-- [ ] T8 (AC7) Accept `text/plain`
+- [x] T8 (AC7) Accept `text/plain`
   - **Test:** `SaveTests.Put_TextPlain_Returns200` - PUT with `Content-Type: text/plain`, assert 200.
   - **Done when:** red (415 or 400), then green by reading the raw body; suite green.
 

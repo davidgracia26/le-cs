@@ -14,6 +14,14 @@ public class SaveTests
         Assert.Equal("""{"version":1}""", await res.Content.ReadAsStringAsync());
     }
 
+    [Fact]
+    public async Task Put_TextPlain_Returns200()
+    {
+        using var api = new ApiFixture();
+        var res = await api.CreateClient().PutAsync("/books/1", new StringContent("""{"title":"Dune"}""", Encoding.UTF8, "text/plain"));
+        Assert.Equal(HttpStatusCode.OK, res.StatusCode);
+    }
+
     [Theory]
     [InlineData("[1,2]")]
     [InlineData("\"text\"")]

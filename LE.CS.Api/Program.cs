@@ -23,7 +23,8 @@ app.MapPut("/{collection}/{id}", async (string collection, string id, HttpReques
 app.MapGet("/{collection}/{id}", (string collection, string id, IDocumentStore store) =>
     store.Get(collection, id) is { } json ? Results.Content(json, "application/json") : Results.NotFound());
 
-app.MapGet("/{collection}", (string collection, IDocumentStore store) => Results.Json(store.List(collection)));
+app.MapGet("/{collection}", (string collection, IDocumentStore store) =>
+    Names.Valid(collection) ? Results.Json(store.List(collection)) : Results.BadRequest());
 
 app.Run();
 

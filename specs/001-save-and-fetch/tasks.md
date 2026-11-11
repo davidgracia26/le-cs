@@ -68,7 +68,7 @@
   - **Test:** `ValidationTests.Put_BadId_Returns400` - PUT `/books/bad.id`, assert 400.
   - **Done when:** red, then green; suite green.
 
-- [ ] T17 (AC16) Reject a bad collection on list
+- [x] T17 (AC16) Reject a bad collection on list
   - **Test:** `ValidationTests.List_BadCollection_Returns400` - GET `/bad.name`, assert 400.
   - **Done when:** red, then green; suite green.
 

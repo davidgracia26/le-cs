@@ -1,17 +1,23 @@
-using System.Collections.Concurrent;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 
 namespace LE.CS.Api;
 
-public sealed class JsonlDocumentStore : IDocumentStore
+public sealed class JsonlDocumentStore(IConfiguration config) : IDocumentStore
 {
-    readonly ConcurrentDictionary<string, string> docs = new();
+    static readonly JsonSerializerOptions Compact = new() { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
+    readonly string root = config["DATA_DIR"] ?? "/data";
 
     public int Save(string collection, string id, JsonElement doc)
     {
-        docs[$"{collection}/{id}"] = doc.GetRawText();
+        Directory.CreateDirectory(Path.Combine(root, collection));
+        File.AppendAllText(Path.Combine(root, collection, id + ".jsonl"), JsonSerializer.Serialize(doc, Compact) + "\n");
         return 1;
     }
 
-    public string? Get(string collection, string id) => docs.GetValueOrDefault($"{collection}/{id}");
+    public string? Get(string collection, string id)
+    {
+        var path = Path.Combine(root, collection, id + ".jsonl");
+        return File.Exists(path) ? File.ReadLines(path).Last() : null;
+    }
 }

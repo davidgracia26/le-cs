@@ -16,7 +16,7 @@
   - **Test:** `FetchTests.Get_Returns_Saved_Document` - PUT then GET `/books/1`, assert 200, `Content-Type: application/json`, body `{"title":"Dune"}`.
   - **Done when:** red (404), then green; suite green.
 
-- [ ] T4 (AC3) Persist one compact line per document file
+- [x] T4 (AC3) Persist one compact line per document file
   - **Test:** `StorageTests.Put_Writes_Jsonl_File` - PUT with temp `DATA_DIR`, assert `books/1.jsonl` exists with exactly one line `{"title":"Dune"}`.
   - **Done when:** red for the right reason (missing file or wrong line), then green; suite green.
 

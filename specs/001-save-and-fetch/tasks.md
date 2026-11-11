@@ -4,7 +4,7 @@
   - **Test:** `SmokeTests.Factory_Starts_Host` - build `WebApplicationFactory<Program>` with a temp `DATA_DIR`, create a client, assert the factory builds.
   - **Done when:** `docker compose run --rm tests` exits 0. Covers: `Microsoft.AspNetCore.Mvc.Testing` added, `coverlet.collector` dropped, `UnitTest1.cs` deleted, `public partial class Program { }`, `Dockerfile` with an sdk `tests` target, `.dockerignore`, `tests` service under a compose `profiles` entry. Red first: command fails (no Dockerfile/compose). Then green.
 
-- [ ] T1 (AC25) Remove template leftovers
+- [x] T1 (AC25) Remove template leftovers
   - **Test:** `LeftoverTests.WeatherForecast_Returns404` - GET `/weatherforecast`, assert 404.
   - **Done when:** red (200 from template), then green after deleting `/weatherforecast`, `WeatherForecast`, `AddOpenApi`, `MapOpenApi`, `UseHttpsRedirection`, the OpenApi package, and `LE.CS.Api.http`; suite green.
 

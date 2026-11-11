@@ -48,7 +48,7 @@
   - **Test:** `ListTests.List_Returns_Sorted_Ids` - PUT `books/2` then `books/1`, GET `/books`, assert 200, `Content-Type: application/json`, body `["1","2"]`.
   - **Done when:** red (404), then green by listing files, ordinal sort; suite green.
 
-- [ ] T12 (AC11) List an empty collection
+- [x] T12 (AC11) List an empty collection
   - **Test:** `ListTests.List_Empty_Collection_Returns_EmptyArray` - GET `/nothing`, assert 200 and body `[]`.
   - **Done when:** red (exception or 404), then green; suite green.
 

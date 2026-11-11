@@ -20,4 +20,10 @@ public sealed class JsonlDocumentStore(IConfiguration config) : IDocumentStore
         var path = Path.Combine(root, collection, id + ".jsonl");
         return File.Exists(path) ? File.ReadLines(path).Last() : null;
     }
+
+    public IEnumerable<string> List(string collection)
+    {
+        var dir = Path.Combine(root, collection);
+        return !Directory.Exists(dir) ? [] : Directory.GetFiles(dir, "*.jsonl").Select(Path.GetFileNameWithoutExtension).Order(StringComparer.Ordinal)!;
+    }
 }

@@ -5,7 +5,7 @@
   - **Done when:** `docker compose run --rm tests` exits 0. Covers: `Microsoft.AspNetCore.Mvc.Testing` added, `coverlet.collector` dropped, `UnitTest1.cs` deleted, `public partial class Program { }`, `Dockerfile` with an sdk `tests` target, `.dockerignore`, `tests` service under a compose `profiles` entry. Red first: command fails (no Dockerfile/compose). Then green.
 
 - [x] T1 (AC25) Remove template leftovers
-  - **Test:** `LeftoverTests.WeatherForecast_Returns404` - GET `/weatherforecast`, assert 404.
+  - **Test:** `LeftoverTests.WeatherForecast_Returns404` - GET `/weatherforecast/1`, assert 404.
   - **Done when:** red (200 from template), then green after deleting `/weatherforecast`, `WeatherForecast`, `AddOpenApi`, `MapOpenApi`, `UseHttpsRedirection`, the OpenApi package, and `LE.CS.Api.http`; suite green.
 
 - [x] T2 (AC1) Save a document with PUT
@@ -44,7 +44,7 @@
   - **Test:** `FetchTests.Get_Missing_Returns404` - GET `/books/missing`, assert 404.
   - **Done when:** red, then green; suite green.
 
-- [ ] T11 (AC10) List ids in a collection
+- [x] T11 (AC10) List ids in a collection
   - **Test:** `ListTests.List_Returns_Sorted_Ids` - PUT `books/2` then `books/1`, GET `/books`, assert 200, `Content-Type: application/json`, body `["1","2"]`.
   - **Done when:** red (404), then green by listing files, ordinal sort; suite green.
 

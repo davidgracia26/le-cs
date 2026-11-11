@@ -12,6 +12,9 @@ app.MapPut("/{collection}/{id}", async (string collection, string id, HttpReques
     return Results.Json(new { version = store.Save(collection, id, doc) });
 });
 
+app.MapGet("/{collection}/{id}", (string collection, string id, IDocumentStore store) =>
+    store.Get(collection, id) is { } json ? Results.Content(json, "application/json") : Results.NotFound());
+
 app.Run();
 
 public partial class Program { }

@@ -5,4 +5,5 @@ namespace LE.CS.Api;
 public interface IDocumentStore
 {
     int Save(string collection, string id, JsonElement doc);
+    string? Get(string collection, string id);
 }

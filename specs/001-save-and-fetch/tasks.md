@@ -12,7 +12,7 @@
   - **Test:** `SaveTests.Put_Returns_Version_1` - PUT `/books/1` `{"title":"Dune"}`, assert 200 and body `{"version":1}`.
   - **Done when:** red (404), then green with `IDocumentStore` + JSONL impl via DI (`DATA_DIR`, default `/data`); suite green.
 
-- [ ] T3 (AC2) Fetch the latest document
+- [x] T3 (AC2) Fetch the latest document
   - **Test:** `FetchTests.Get_Returns_Saved_Document` - PUT then GET `/books/1`, assert 200, `Content-Type: application/json`, body `{"title":"Dune"}`.
   - **Done when:** red (404), then green; suite green.
 

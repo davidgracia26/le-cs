@@ -13,4 +13,18 @@ public class SaveTests
         Assert.Equal(HttpStatusCode.OK, res.StatusCode);
         Assert.Equal("""{"version":1}""", await res.Content.ReadAsStringAsync());
     }
+
+    [Theory]
+    [InlineData("[1,2]")]
+    [InlineData("\"text\"")]
+    [InlineData("42")]
+    [InlineData("null")]
+    public async Task Put_NonObject_Roundtrips(string body)
+    {
+        using var api = new ApiFixture();
+        var client = api.CreateClient();
+        var put = await client.PutJson("/books/1", body);
+        Assert.Equal(HttpStatusCode.OK, put.StatusCode);
+        Assert.Equal(body, await client.GetStringAsync("/books/1"));
+    }
 }

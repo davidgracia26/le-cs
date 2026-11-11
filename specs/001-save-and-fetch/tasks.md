@@ -20,7 +20,7 @@
   - **Test:** `StorageTests.Put_Writes_Jsonl_File` - PUT with temp `DATA_DIR`, assert `books/1.jsonl` exists with exactly one line `{"title":"Dune"}`.
   - **Done when:** red for the right reason (missing file or wrong line), then green; suite green.
 
-- [ ] T5 (AC4) Accept non-object bodies
+- [x] T5 (AC4) Accept non-object bodies
   - **Test:** `SaveTests.Put_NonObject_Roundtrips` - `[Theory]` over `[1,2]`, `"text"`, `42`, `null`: PUT asserts 200, GET asserts the same JSON.
   - **Done when:** red per case, then green; suite green.
 

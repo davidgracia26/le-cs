@@ -52,7 +52,7 @@
   - **Test:** `ListTests.List_Empty_Collection_Returns_EmptyArray` - GET `/nothing`, assert 200 and body `[]`.
   - **Done when:** red (exception or 404), then green; suite green.
 
-- [ ] T13 (AC12) Reject invalid JSON
+- [x] T13 (AC12) Reject invalid JSON
   - **Test:** `ValidationTests.Put_InvalidJson_Returns400` - PUT `/books/1` body `{bad`, assert 400.
   - **Done when:** red (500), then green; suite green.
 

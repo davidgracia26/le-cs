@@ -1,0 +1,14 @@
+using System.Net;
+
+namespace LE.CS.Tests;
+
+public class ValidationTests
+{
+    [Fact]
+    public async Task Put_InvalidJson_Returns400()
+    {
+        using var api = new ApiFixture();
+        var res = await api.CreateClient().PutJson("/books/1", "{bad");
+        Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
+    }
+}

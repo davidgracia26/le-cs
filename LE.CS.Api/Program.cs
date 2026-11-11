@@ -8,6 +8,7 @@ var app = builder.Build();
 
 app.MapPut("/{collection}/{id}", async (string collection, string id, HttpRequest req, IDocumentStore store) =>
 {
+    if (!Names.Valid(collection)) return Results.BadRequest();
     try
     {
         var doc = await JsonSerializer.DeserializeAsync<JsonElement>(req.Body);

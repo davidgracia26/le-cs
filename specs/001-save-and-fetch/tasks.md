@@ -24,7 +24,7 @@
   - **Test:** `SaveTests.Put_NonObject_Roundtrips` - `[Theory]` over `[1,2]`, `"text"`, `42`, `null`: PUT asserts 200, GET asserts the same JSON.
   - **Done when:** red per case, then green; suite green.
 
-- [ ] T6 (AC5) Keep text without added escapes
+- [x] T6 (AC5) Keep text without added escapes
   - **Test:** `FetchTests.Get_Keeps_Unicode_Unescaped` - PUT `{"s":"é<&>日本"}`, GET, assert identical text and no `\u` in body.
   - **Done when:** red (escapes added), then green with `UnsafeRelaxedJsonEscaping`; suite green.
 

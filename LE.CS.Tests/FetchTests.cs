@@ -15,4 +15,15 @@ public class FetchTests
         Assert.Equal("application/json", res.Content.Headers.ContentType?.MediaType);
         Assert.Equal("""{"title":"Dune"}""", await res.Content.ReadAsStringAsync());
     }
+
+    [Fact]
+    public async Task Get_Keeps_Unicode_Unescaped()
+    {
+        using var api = new ApiFixture();
+        var client = api.CreateClient();
+        await client.PutJson("/books/1", """{"s":"é<&>日本"}""");
+        var body = await client.GetStringAsync("/books/1");
+        Assert.Equal("""{"s":"é<&>日本"}""", body);
+        Assert.DoesNotContain("\\u", body);
+    }
 }

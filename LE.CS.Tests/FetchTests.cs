@@ -28,6 +28,14 @@ public class FetchTests
     }
 
     [Fact]
+    public async Task Get_Missing_Returns404()
+    {
+        using var api = new ApiFixture();
+        var res = await api.CreateClient().GetAsync("/books/missing");
+        Assert.Equal(HttpStatusCode.NotFound, res.StatusCode);
+    }
+
+    [Fact]
     public async Task Get_Keeps_Key_Order()
     {
         using var api = new ApiFixture();

@@ -40,7 +40,7 @@
   - **Test:** `SaveTests.Put_NoContentType_Returns200` - PUT with `Content-Type` header absent, assert 200.
   - **Done when:** red, then green; suite green.
 
-- [ ] T10 (AC9) Return 404 for a missing document
+- [x] T10 (AC9) Return 404 for a missing document
   - **Test:** `FetchTests.Get_Missing_Returns404` - GET `/books/missing`, assert 404.
   - **Done when:** red, then green; suite green.
 

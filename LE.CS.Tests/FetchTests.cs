@@ -26,4 +26,13 @@ public class FetchTests
         Assert.Equal("""{"s":"é<&>日本"}""", body);
         Assert.DoesNotContain("\\u", body);
     }
+
+    [Fact]
+    public async Task Get_Keeps_Key_Order()
+    {
+        using var api = new ApiFixture();
+        var client = api.CreateClient();
+        await client.PutJson("/books/1", """{"b":1,"a":2}""");
+        Assert.Equal("""{"b":1,"a":2}""", await client.GetStringAsync("/books/1"));
+    }
 }

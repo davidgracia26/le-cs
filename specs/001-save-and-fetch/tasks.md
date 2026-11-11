@@ -28,7 +28,7 @@
   - **Test:** `FetchTests.Get_Keeps_Unicode_Unescaped` - PUT `{"s":"é<&>日本"}`, GET, assert identical text and no `\u` in body.
   - **Done when:** red (escapes added), then green with `UnsafeRelaxedJsonEscaping`; suite green.
 
-- [ ] T7 (AC6) Keep key order
+- [x] T7 (AC6) Keep key order
   - **Test:** `FetchTests.Get_Keeps_Key_Order` - PUT `{"b":1,"a":2}`, GET, assert body `{"b":1,"a":2}`.
   - **Done when:** red, then green by writing `JsonElement` values; suite green.
 

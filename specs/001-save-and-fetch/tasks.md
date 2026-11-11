@@ -80,7 +80,7 @@
   - **Test:** `ValidationTests.Put_ValidChars_Returns200` - PUT `/Books_2/doc-1`, assert 200.
   - **Done when:** test green on arrival is allowed only if T15 already allows it; else red then green; suite green.
 
-- [ ] T20 (AC19) Accept a 100-character id
+- [x] T20 (AC19) Accept a 100-character id
   - **Test:** `ValidationTests.Put_Id100_Returns200` - PUT `/books/{100 x 'a'}`, assert 200.
   - **Done when:** red or already-green noted; suite green.
 

@@ -9,8 +9,6 @@ talk about for an hour.
 | Brief | In one line |
 | --- | --- |
 | [Document store](briefs/document-store.md) | Store and retrieve JSON documents, keeping previous versions. |
-| [Multi-tenant RBAC](briefs/multi-tenant-rbac.md) | An API where tenants can't see each other's data, and roles decide who can do what. |
-| [ETL pipeline](briefs/etl-pipeline.md) | Take a messy supplier feed, clean it up, load it, report on the run. |
 
 ---
 

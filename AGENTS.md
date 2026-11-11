@@ -13,6 +13,12 @@ Structural enforcement:
 - If the response requires multiple points, use a markdown list with bold headers (e.g., "**Key Factor:** Detail").
 - If the answer is code, output ONLY the code block. No explanation before or after.
 
+## Agent config
+
+- Treat `.claude/` as the primary location for skills (`.claude/skills/`) and hooks (`.claude/hooks/`). Look there first. Write new skills and hooks there.
+- Spec flow: `spec` -> `tasks` -> `work`. Artifacts live in `specs/<slug>/`.
+- Keep `specs/<slug>/scratchpad.md` during a cycle. Note skill, hook, and rule improvements as they appear. After the last task, apply them to `.claude/skills/`, `.claude/hooks/`, `.claude/settings.json`, and `AGENTS.md`. Then delete the scratchpad, commit the edits as the spec's final commit (same `NNN:` prefix), and report what changed.
+
 ## Project
 
 One-hour interview exercise: a **document store** service (`README.md`, `briefs/document-store.md`).

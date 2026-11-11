@@ -482,3 +482,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# spec scratchpads (deleted after each cycle)
+specs/*/scratchpad.md

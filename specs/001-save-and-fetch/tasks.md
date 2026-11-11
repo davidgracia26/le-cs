@@ -8,7 +8,7 @@
   - **Test:** `LeftoverTests.WeatherForecast_Returns404` - GET `/weatherforecast`, assert 404.
   - **Done when:** red (200 from template), then green after deleting `/weatherforecast`, `WeatherForecast`, `AddOpenApi`, `MapOpenApi`, `UseHttpsRedirection`, the OpenApi package, and `LE.CS.Api.http`; suite green.
 
-- [ ] T2 (AC1) Save a document with PUT
+- [x] T2 (AC1) Save a document with PUT
   - **Test:** `SaveTests.Put_Returns_Version_1` - PUT `/books/1` `{"title":"Dune"}`, assert 200 and body `{"version":1}`.
   - **Done when:** red (404), then green with `IDocumentStore` + JSONL impl via DI (`DATA_DIR`, default `/data`); suite green.
 

@@ -92,7 +92,7 @@
   - **Test:** `ValidationTests.Put_Collection100_Returns200` - PUT `/{100 x 'a'}/1`, assert 200.
   - **Done when:** red or already-green noted; suite green.
 
-- [ ] T23 (AC22) Reject a 101-character collection
+- [x] T23 (AC22) Reject a 101-character collection
   - **Test:** `ValidationTests.Put_Collection101_Returns400` - PUT `/{101 x 'a'}/1`, assert 400.
   - **Done when:** red, then green; suite green.
 

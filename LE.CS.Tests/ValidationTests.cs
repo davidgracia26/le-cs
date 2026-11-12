@@ -83,4 +83,12 @@ public class ValidationTests
         var res = await api.CreateClient().PutJson($"/{new string('a', 100)}/1", "{}");
         Assert.Equal(HttpStatusCode.OK, res.StatusCode);
     }
+
+    [Fact]
+    public async Task Put_Collection101_Returns400()
+    {
+        using var api = new ApiFixture();
+        var res = await api.CreateClient().PutJson($"/{new string('a', 101)}/1", "{}");
+        Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
+    }
 }

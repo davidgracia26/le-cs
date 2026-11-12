@@ -40,7 +40,7 @@
   - **Test:** `docker compose down`, then `docker compose run --rm demo` - `demo.sh` sends one request and exits 0 only if `api` answered; `docker compose ps api` shows `api` running afterward.
   - **Done when:** red (`no such service: demo`), then green with a `demo` service (`curlimages/curl`, `profiles: ["demo"]`, `depends_on: api`, mounts `demo/demo.sh`) and a retry loop in `demo.sh` that waits for `api` to accept connections; full suite green.
 
-- [ ] T11 (AC12) Send PUT over the compose network
+- [x] T11 (AC12) Send PUT over the compose network
   - **Test:** `docker compose run --rm demo` - `demo.sh` PUTs `http://api:8080/demo/1` and fails unless the status is 200.
   - **Done when:** red (script has no PUT check; point it at a closed port first and see non-zero), then green; full suite green.
 

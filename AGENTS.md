@@ -55,6 +55,7 @@ Dockerfile                multi-stage: sdk builds, aspnet runs (to add)
 docker-compose.yml        `api`, `tests`, and `demo` services (to add)
 demo/demo.sh              curl script run by `demo` in `curlimages/curl` (to add)
 .gitignore, .dockerignore ignore bin/ obj/ (to add)
+.gitattributes            `*.sh text eol=lf` so Windows checkouts keep `demo.sh` runnable in the container
 README.md                 exact start and proof commands only
 GUIDANCE.md               the exercise rules from the interviewer (read-only)
 ```

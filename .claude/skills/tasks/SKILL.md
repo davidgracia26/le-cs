@@ -37,6 +37,7 @@ Write `specs/<slug>/tasks.md` from `specs/<slug>/spec.md`. Do not write code or 
 - Keep tasks small: one failing test, one minimal change, one commit.
 - Name the test before the code exists.
 - Every task has a **Test**. Setup tasks use a smoke test or a Docker command that must exit 0.
+- For Docker-only tasks, **Test** names the exact compose command and its expected output or exit code. Run curl checks with `docker run --rm --network <project>_default curlimages/curl` (project name is the folder name: `le-cs_default`).
 - No task for out-of-scope features (see AGENTS.md).
 - No task without an AC, except setup.
 - Tag a task `(characterization)` when an earlier task's design likely satisfies its AC. Its **Done when** is "green on arrival; full suite green".

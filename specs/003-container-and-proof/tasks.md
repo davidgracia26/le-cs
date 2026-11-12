@@ -52,7 +52,7 @@
   - **Test:** `docker compose run --rm demo` - `GET /demo/1/versions` must equal `[1,2]` and `GET /demo/1/versions/1` must equal the first body.
   - **Done when:** red (checks absent; flip an expected value and see non-zero), then green; full suite green.
 
-- [ ] T14 (AC15) Exit non-zero when a check fails
+- [x] T14 (AC15) Exit non-zero when a check fails
   - **Test:** `docker compose run --rm -e API=http://api:1 demo` exits non-zero. `docker compose down -v` then `docker compose run --rm demo` exits 0.
   - **Done when:** red (exit 0 with failing checks), then green with `set -e` and a `check` helper that prints the failure and exits 1; full suite green.
 

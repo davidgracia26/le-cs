@@ -9,21 +9,10 @@ public class FetchTests
     {
         using var api = new ApiFixture();
         var client = api.CreateClient();
-        await client.PutJson("/books/1", """{"title":"Dune"}""");
+        await client.PostJson("/books/1", """{"title":"Dune"}""");
         var res = await client.GetAsync("/books/1");
         Assert.Equal(HttpStatusCode.OK, res.StatusCode);
         Assert.Equal("application/json", res.Content.Headers.ContentType?.MediaType);
-        Assert.Equal("""{"title":"Dune"}""", await res.Content.ReadAsStringAsync());
-    }
-
-    [Fact]
-    public async Task Get_After_Post_Returns_Document()
-    {
-        using var api = new ApiFixture();
-        var client = api.CreateClient();
-        await client.PostAsync("/books/1", new StringContent("""{"title":"Dune"}""", System.Text.Encoding.UTF8, "application/json"));
-        var res = await client.GetAsync("/books/1");
-        Assert.Equal(HttpStatusCode.OK, res.StatusCode);
         Assert.Equal("""{"title":"Dune"}""", await res.Content.ReadAsStringAsync());
     }
 
@@ -32,7 +21,7 @@ public class FetchTests
     {
         using var api = new ApiFixture();
         var client = api.CreateClient();
-        await client.PutJson("/books/1", """{"s":"é<&>日本"}""");
+        await client.PostJson("/books/1", """{"s":"é<&>日本"}""");
         var body = await client.GetStringAsync("/books/1");
         Assert.Equal("""{"s":"é<&>日本"}""", body);
         Assert.DoesNotContain("\\u", body);
@@ -51,7 +40,7 @@ public class FetchTests
     {
         using var api = new ApiFixture();
         var client = api.CreateClient();
-        await client.PutJson("/books/1", """{"b":1,"a":2}""");
+        await client.PostJson("/books/1", """{"b":1,"a":2}""");
         Assert.Equal("""{"b":1,"a":2}""", await client.GetStringAsync("/books/1"));
     }
 }

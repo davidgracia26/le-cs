@@ -5,34 +5,34 @@ namespace LE.CS.Tests;
 public class ValidationTests
 {
     [Fact]
-    public async Task Put_InvalidJson_Returns400()
+    public async Task Post_InvalidJson_Returns400()
     {
         using var api = new ApiFixture();
-        var res = await api.CreateClient().PutJson("/books/1", "{bad");
+        var res = await api.CreateClient().PostJson("/books/1", "{bad");
         Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
     }
 
     [Fact]
-    public async Task Put_EmptyBody_Returns400()
+    public async Task Post_EmptyBody_Returns400()
     {
         using var api = new ApiFixture();
-        var res = await api.CreateClient().PutJson("/books/1", "");
+        var res = await api.CreateClient().PostJson("/books/1", "");
         Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
     }
 
     [Fact]
-    public async Task Put_BadCollection_Returns400()
+    public async Task Post_BadCollection_Returns400()
     {
         using var api = new ApiFixture();
-        var res = await api.CreateClient().PutJson("/bad.name/1", "{}");
+        var res = await api.CreateClient().PostJson("/bad.name/1", "{}");
         Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
     }
 
     [Fact]
-    public async Task Put_BadId_Returns400()
+    public async Task Post_BadId_Returns400()
     {
         using var api = new ApiFixture();
-        var res = await api.CreateClient().PutJson("/books/bad.id", "{}");
+        var res = await api.CreateClient().PostJson("/books/bad.id", "{}");
         Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
     }
 
@@ -69,42 +69,42 @@ public class ValidationTests
     }
 
     [Fact]
-    public async Task Put_ValidChars_Returns200()
+    public async Task Post_ValidChars_Returns200()
     {
         using var api = new ApiFixture();
-        var res = await api.CreateClient().PutJson("/Books_2/doc-1", "{}");
+        var res = await api.CreateClient().PostJson("/Books_2/doc-1", "{}");
         Assert.Equal(HttpStatusCode.OK, res.StatusCode);
     }
 
     [Fact]
-    public async Task Put_Id100_Returns200()
+    public async Task Post_Id100_Returns200()
     {
         using var api = new ApiFixture();
-        var res = await api.CreateClient().PutJson($"/books/{new string('a', 100)}", "{}");
+        var res = await api.CreateClient().PostJson($"/books/{new string('a', 100)}", "{}");
         Assert.Equal(HttpStatusCode.OK, res.StatusCode);
     }
 
     [Fact]
-    public async Task Put_Id101_Returns400()
+    public async Task Post_Id101_Returns400()
     {
         using var api = new ApiFixture();
-        var res = await api.CreateClient().PutJson($"/books/{new string('a', 101)}", "{}");
+        var res = await api.CreateClient().PostJson($"/books/{new string('a', 101)}", "{}");
         Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
     }
 
     [Fact]
-    public async Task Put_Collection100_Returns200()
+    public async Task Post_Collection100_Returns200()
     {
         using var api = new ApiFixture();
-        var res = await api.CreateClient().PutJson($"/{new string('a', 100)}/1", "{}");
+        var res = await api.CreateClient().PostJson($"/{new string('a', 100)}/1", "{}");
         Assert.Equal(HttpStatusCode.OK, res.StatusCode);
     }
 
     [Fact]
-    public async Task Put_Collection101_Returns400()
+    public async Task Post_Collection101_Returns400()
     {
         using var api = new ApiFixture();
-        var res = await api.CreateClient().PutJson($"/{new string('a', 101)}/1", "{}");
+        var res = await api.CreateClient().PostJson($"/{new string('a', 101)}/1", "{}");
         Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
     }
 }

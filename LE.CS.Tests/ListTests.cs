@@ -9,8 +9,8 @@ public class ListTests
     {
         using var api = new ApiFixture();
         var client = api.CreateClient();
-        await client.PutJson("/books/2", "{}");
-        await client.PutJson("/books/1", "{}");
+        await client.PostJson("/books/2", "{}");
+        await client.PostJson("/books/1", "{}");
         var res = await client.GetAsync("/books");
         Assert.Equal(HttpStatusCode.OK, res.StatusCode);
         Assert.Equal("application/json", res.Content.Headers.ContentType?.MediaType);

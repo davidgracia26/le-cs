@@ -7,19 +7,19 @@ namespace LE.CS.Tests;
 public class StorageTests
 {
     [Fact]
-    public async Task Put_Writes_Jsonl_File()
+    public async Task Post_Writes_Jsonl_File()
     {
         using var api = new ApiFixture();
-        await api.CreateClient().PutJson("/books/1", """{"title":"Dune"}""");
+        await api.CreateClient().PostJson("/books/1", """{"title":"Dune"}""");
         var lines = File.ReadAllLines(Path.Combine(api.DataDir, "books", "1.jsonl"));
         Assert.Equal(["""{"title":"Dune"}"""], lines);
     }
 
     [Fact]
-    public async Task Put_Compacts_Pretty_Body_To_One_Line()
+    public async Task Post_Compacts_Pretty_Body_To_One_Line()
     {
         using var api = new ApiFixture();
-        await api.CreateClient().PutJson("/books/1", "{\n  \"a\": 1,\n  \"b\": [1, 2]\n}");
+        await api.CreateClient().PostJson("/books/1", "{\n  \"a\": 1,\n  \"b\": [1, 2]\n}");
         var lines = File.ReadAllLines(Path.Combine(api.DataDir, "books", "1.jsonl"));
         Assert.Equal(["""{"a":1,"b":[1,2]}"""], lines);
     }
@@ -29,7 +29,7 @@ public class StorageTests
     {
         using var api = new ApiFixture();
         var client = api.CreateClient();
-        foreach (var body in new[] { "1", "2", "3" }) await client.PutJson("/books/1", body);
+        foreach (var body in new[] { "1", "2", "3" }) await client.PostJson("/books/1", body);
         var text = File.ReadAllText(Path.Combine(api.DataDir, "books", "1.jsonl"));
         Assert.Equal("1\n2\n3\n", text);
     }
@@ -38,7 +38,7 @@ public class StorageTests
     public async Task Data_Dir_Setting_Sets_Write_Path()
     {
         using var api = new ApiFixture();
-        await api.CreateClient().PutJson("/books/1", "{}");
+        await api.CreateClient().PostJson("/books/1", "{}");
         Assert.True(File.Exists(Path.Combine(api.DataDir, "books", "1.jsonl")));
     }
 
@@ -62,8 +62,8 @@ public class StorageTests
     {
         using var first = new ApiFixture();
         var a = first.CreateClient();
-        await a.PutJson("/books/1", """{"v":1}""");
-        await a.PutJson("/books/1", """{"v":2}""");
+        await a.PostJson("/books/1", """{"v":1}""");
+        await a.PostJson("/books/1", """{"v":2}""");
         using var second = new ApiFixture(first.DataDir);
         var b = second.CreateClient();
         Assert.Equal("""{"v":2}""", await b.GetStringAsync("/books/1"));

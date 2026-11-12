@@ -17,6 +17,17 @@ public class FetchTests
     }
 
     [Fact]
+    public async Task Get_After_Post_Returns_Document()
+    {
+        using var api = new ApiFixture();
+        var client = api.CreateClient();
+        await client.PostAsync("/books/1", new StringContent("""{"title":"Dune"}""", System.Text.Encoding.UTF8, "application/json"));
+        var res = await client.GetAsync("/books/1");
+        Assert.Equal(HttpStatusCode.OK, res.StatusCode);
+        Assert.Equal("""{"title":"Dune"}""", await res.Content.ReadAsStringAsync());
+    }
+
+    [Fact]
     public async Task Get_Keeps_Unicode_Unescaped()
     {
         using var api = new ApiFixture();

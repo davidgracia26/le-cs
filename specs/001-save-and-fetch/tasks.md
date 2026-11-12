@@ -100,6 +100,6 @@
   - **Test:** `SaveTests.Post_Returns_Version_1` - POST `/books/1` `{"title":"Dune"}`, assert 200 and body `{"version":1}`.
   - **Done when:** red (405), then green by mapping POST to the PUT handler; suite green.
 
-- [ ] T25 (AC24) Fetch after POST
+- [x] T25 (AC24) Fetch after POST
   - **Test:** `FetchTests.Get_After_Post_Returns_Document` - POST then GET `/books/1`, assert 200 and body `{"title":"Dune"}`.
   - **Done when:** red or already-green noted; suite green.

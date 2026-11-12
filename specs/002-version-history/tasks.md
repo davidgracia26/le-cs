@@ -52,7 +52,7 @@
   - **Test:** `ValidationTests.Versions_BadCollection_Returns400` - GET `/bad.name/1/versions`, assert 400.
   - **Done when:** red (404), then green; full suite green.
 
-- [ ] T14 (AC14) Reject a bad id on one version
+- [x] T14 (AC14) Reject a bad id on one version
   - **Test:** `ValidationTests.Version_BadId_Returns400` - GET `/books/bad.id/versions/1`, assert 400.
   - **Done when:** red (404), then green with name checks before the version check; full suite green.
 

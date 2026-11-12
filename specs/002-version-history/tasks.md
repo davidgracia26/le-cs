@@ -4,7 +4,7 @@
   - **Test:** `VersionTests.Second_Put_Returns_Version_2` - PUT `/books/1` `{"version":1}` then `{"title":"Other"}`, assert second response 200 and body `{"version":2}`.
   - **Done when:** red (body `{"version":1}`), then green by returning the line count from `Save`; full suite green.
 
-- [ ] T2 (AC2) (characterization) Fetch the latest after two PUTs
+- [x] T2 (AC2) (characterization) Fetch the latest after two PUTs
   - **Test:** `VersionTests.Get_Returns_Second_Body` - two PUTs with different bodies, GET `/books/1`, assert body equals the second.
   - **Done when:** green on arrival; full suite green.
 

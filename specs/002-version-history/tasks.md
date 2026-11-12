@@ -8,7 +8,7 @@
   - **Test:** `VersionTests.Get_Returns_Second_Body` - two PUTs with different bodies, GET `/books/1`, assert body equals the second.
   - **Done when:** green on arrival; full suite green.
 
-- [ ] T3 (AC3) List version numbers
+- [x] T3 (AC3) List version numbers
   - **Test:** `VersionTests.Versions_Lists_1_2_3` - three PUTs, GET `/books/1/versions`, assert 200, `Content-Type: application/json`, body `[1,2,3]`.
   - **Done when:** red (404), then green with `GET /{collection}/{id}/versions`; full suite green.
 

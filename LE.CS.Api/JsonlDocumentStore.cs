@@ -22,6 +22,12 @@ public sealed class JsonlDocumentStore(IConfiguration config) : IDocumentStore
         return File.Exists(path) ? File.ReadLines(path).Last() : null;
     }
 
+    public int Count(string collection, string id)
+    {
+        var path = Path.Combine(root, collection, id + ".jsonl");
+        return File.Exists(path) ? File.ReadLines(path).Count() : 0;
+    }
+
     public IEnumerable<string> List(string collection)
     {
         var dir = Path.Combine(root, collection);

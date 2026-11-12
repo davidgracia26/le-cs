@@ -24,6 +24,9 @@ app.MapGet("/{collection}/{id}", (string collection, string id, IDocumentStore s
     !Names.Valid(collection) || !Names.Valid(id) ? Results.BadRequest()
     : store.Get(collection, id) is { } json ? Results.Content(json, "application/json") : Results.NotFound());
 
+app.MapGet("/{collection}/{id}/versions", (string collection, string id, IDocumentStore store) =>
+    Results.Json(Enumerable.Range(1, store.Count(collection, id))));
+
 app.MapGet("/{collection}", (string collection, IDocumentStore store) =>
     Names.Valid(collection) ? Results.Json(store.List(collection)) : Results.BadRequest());
 

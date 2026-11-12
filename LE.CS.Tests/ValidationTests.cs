@@ -53,6 +53,14 @@ public class ValidationTests
     }
 
     [Fact]
+    public async Task Versions_BadCollection_Returns400()
+    {
+        using var api = new ApiFixture();
+        var res = await api.CreateClient().GetAsync("/bad.name/1/versions");
+        Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
+    }
+
+    [Fact]
     public async Task Put_ValidChars_Returns200()
     {
         using var api = new ApiFixture();

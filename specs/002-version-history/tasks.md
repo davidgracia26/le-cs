@@ -48,7 +48,7 @@
   - **Test:** `VersionTests.Version_Of_Missing_Returns404` - GET `/books/missing/versions/1`, assert 404.
   - **Done when:** red (exception) or already-green noted; full suite green.
 
-- [ ] T13 (AC13) Reject a bad collection on versions
+- [x] T13 (AC13) Reject a bad collection on versions
   - **Test:** `ValidationTests.Versions_BadCollection_Returns400` - GET `/bad.name/1/versions`, assert 400.
   - **Done when:** red (404), then green; full suite green.
 

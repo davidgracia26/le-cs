@@ -28,11 +28,11 @@
   - **Test:** `docker compose up --build -d`, then `docker run --rm --network le-cs_default curlimages/curl -s -o /dev/null -w "%{http_code}" -X PUT -d "{}" http://api:8080/books/1` prints `200`.
   - **Done when:** red (`500`, write denied for `app`), then green with `/data` created and `chown`ed to `app` in the runtime stage and a named volume mounted at `/data`; full suite green.
 
-- [ ] T8 (AC6) (characterization) First PUT on a fresh named volume
+- [x] T8 (AC6) (characterization) First PUT on a fresh named volume
   - **Test:** `docker compose down -v`, `docker compose up --build -d`, run the T7 curl command; prints `200`.
   - **Done when:** green on arrival (no permission error in `docker compose logs api`); full suite green.
 
-- [ ] T9 (AC5) (characterization) Keep data across `down` and `up`
+- [x] T9 (AC5) (characterization) Keep data across `down` and `up`
   - **Test:** PUT `/books/1` twice with different bodies, `docker compose down`, `docker compose up -d`; curl `GET /books/1` returns the second body and `GET /books/1/versions` returns `[1,2]`.
   - **Done when:** green on arrival; full suite green.
 

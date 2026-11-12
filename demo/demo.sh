@@ -6,3 +6,5 @@ check() { [ "$2" = "$3" ] || { echo "FAIL $1: expected '$2' got '$3'"; exit 1; }
 put() { curl -s -o /dev/null -w "%{http_code}" -X PUT -d "$1" "$API/demo/1"; }
 
 check "PUT first" 200 "$(put '{"n":1}')"
+check "PUT second" 200 "$(put '{"n":2}')"
+check "GET latest" '{"n":2}' "$(curl -s "$API/demo/1")"

@@ -44,7 +44,7 @@
   - **Test:** `docker compose run --rm demo` - `demo.sh` PUTs `http://api:8080/demo/1` and fails unless the status is 200.
   - **Done when:** red (script has no PUT check; point it at a closed port first and see non-zero), then green; full suite green.
 
-- [ ] T12 (AC13) Check the latest body after two PUTs
+- [x] T12 (AC13) Check the latest body after two PUTs
   - **Test:** `docker compose run --rm demo` - after two PUTs with different bodies, `GET /demo/1` must equal the second body.
   - **Done when:** red (check absent; flip the expected body and see non-zero), then green with the real expected body; full suite green.
 

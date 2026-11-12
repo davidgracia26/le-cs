@@ -4,7 +4,7 @@
   - **Test:** `docker compose down -v`, then `docker compose run --rm demo` exits 0.
   - **Done when:** green on arrival (exit 0); full suite green.
 
-- [ ] T2 (AC2) Rerun the demo on the same volume
+- [x] T2 (AC2) Rerun the demo on the same volume
   - **Test:** after T1's run, `docker compose run --rm demo` again exits 0, with no `down` between runs.
   - **Done when:** red (non-zero: `FAIL GET versions: expected '[1,2]' got '[1,2,3,4]'`), then green with `demo.sh` saving under a run-unique id instead of `demo/1`; full suite green.
 

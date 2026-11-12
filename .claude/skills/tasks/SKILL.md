@@ -16,7 +16,7 @@ Write `specs/<slug>/tasks.md` from `specs/<slug>/spec.md`. Do not write code or 
 ## Steps
 
 1. Read the spec. If `Status` is not `approved`, ask the user to approve it. On yes, set `Status` to `approved`. On no, stop.
-2. Map every acceptance criterion to exactly one task. Add setup tasks only when a test cannot run without them (project scaffold, Docker, compose `tests` service).
+2. Map every acceptance criterion to exactly one task. Add setup tasks only when a test cannot run without them (project scaffold, Docker, compose `tests` and `demo` services).
 3. Order tasks so each one builds on a green suite. Walking skeleton first.
 4. Write the file using the template below.
 5. Append any `[skill:*]`, `[hook:*]`, or `[rule]` notes to `specs/<slug>/scratchpad.md`. Format: see the `work` skill.

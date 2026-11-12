@@ -88,7 +88,7 @@
   - **Test:** `ValidationTests.Put_Id101_Returns400` - PUT `/books/{101 x 'a'}`, assert 400.
   - **Done when:** red, then green; suite green.
 
-- [ ] T22 (AC21) Accept a 100-character collection
+- [x] T22 (AC21) Accept a 100-character collection
   - **Test:** `ValidationTests.Put_Collection100_Returns200` - PUT `/{100 x 'a'}/1`, assert 200.
   - **Done when:** red or already-green noted; suite green.
 

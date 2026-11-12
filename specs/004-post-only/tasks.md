@@ -8,7 +8,7 @@
   - **Test:** `PutRemovedTests.Put_Returns405` - `PUT /books/1` with `{"title":"Dune"}` -> 405. Use `HttpClient.PutAsync` directly, not a helper.
   - **Done when:** red (200), then green with the save route mapped to `POST` only in `Program.cs`; full suite green.
 
-- [ ] T3 (AC2) (characterization) Reject PUT on an existing document
+- [x] T3 (AC2) (characterization) Reject PUT on an existing document
   - **Test:** `PutRemovedTests.Put_On_Existing_Returns405_And_Adds_No_Version` - POST `/books/1` twice, `PUT /books/1` -> 405, `GET /books/1/versions` is `[1,2]`.
   - **Done when:** green on arrival; full suite green.
 

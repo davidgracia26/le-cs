@@ -17,7 +17,7 @@ Complete tasks in order. One task at a time. Use `todo_write` to track.
 ## Loop (per task)
 
 1. **Pick:** first unchecked task in `tasks.md`. Re-read its AC in `spec.md`.
-2. **Red:** write the named test only. Run `docker compose run --rm tests`. Confirm it fails for the expected reason (assertion, not compile or setup error). If it passes, the test is wrong or the AC already holds: stop and tell the user.
+2. **Red:** write the named test only. Run `docker compose run --rm tests`. Confirm it fails for the expected reason (assertion, not compile or setup error). If it passes because earlier code already satisfies the AC, keep it as a characterization test, say so in the commit message, and continue. Stop and tell the user only if the test cannot fail.
 3. **Green:** write the least code that passes. No extra features, no speculative abstractions.
 4. **Refactor:** clean up with the suite green. Match AGENTS.md conventions.
 5. **Verify:** run the full suite. All tests pass.

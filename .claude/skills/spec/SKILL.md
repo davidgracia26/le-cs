@@ -16,7 +16,7 @@ Write `specs/<slug>/spec.md`. Do not write code or tests.
 1. Read `AGENTS.md`, `README.md`, `briefs/`, and existing `specs/`. Do not duplicate or contradict an existing spec; reference it by number instead.
 2. Ask the user at most 3 questions, only for gaps that change behavior. Skip if none.
 3. Reject or flag any item on the AGENTS.md "Out of scope" list. Do not write it into the spec.
-4. Write the spec using the template below. Keep it under one page.
+4. Write the spec using the template below. Keep it under one page. Check every AC against the others for contradictions.
 5. Create `specs/<slug>/scratchpad.md` with the heading `# Scratchpad`. This opens the cycle's notes. Format and use: see the `work` skill.
 6. Show the path. Wait for approval before `tasks`.
 

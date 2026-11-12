@@ -15,7 +15,7 @@ Write `specs/<slug>/tasks.md` from `specs/<slug>/spec.md`. Do not write code or 
 
 ## Steps
 
-1. Read the spec. Stop if `Status` is not `approved`.
+1. Read the spec. If `Status` is not `approved`, ask the user to approve it. On yes, set `Status` to `approved`. On no, stop.
 2. Map every acceptance criterion to exactly one task. Add setup tasks only when a test cannot run without them (project scaffold, Docker, compose `tests` service).
 3. Order tasks so each one builds on a green suite. Walking skeleton first.
 4. Write the file using the template below.
@@ -39,3 +39,4 @@ Write `specs/<slug>/tasks.md` from `specs/<slug>/spec.md`. Do not write code or 
 - Every task has a **Test**. Setup tasks use a smoke test or a Docker command that must exit 0.
 - No task for out-of-scope features (see AGENTS.md).
 - No task without an AC, except setup.
+- Tag a task `(characterization)` when an earlier task's design likely satisfies its AC. Its **Done when** is "green on arrival; full suite green".

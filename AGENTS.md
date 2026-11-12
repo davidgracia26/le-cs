@@ -107,6 +107,8 @@ docker compose up --build        # start service
 docker compose run --rm tests    # run tests (confirm service name)
 ```
 
+Set `pull_policy: build` on `tests`; otherwise `docker compose run` reuses a stale image. Run `docker compose --progress quiet run --rm tests` for short output.
+
 Update when compose services are final.
 
 ## Verify before finishing

@@ -35,7 +35,7 @@ Write the note when you hit it. Do not batch.
 
 ## Retrospective (after the last task, before reporting)
 
-1. Read the scratchpad. Drop duplicates and one-offs. Keep only notes that would change future runs.
+1. Read the scratchpad with `cat specs/<slug>/scratchpad.md`. It is gitignored, so glob and search tools miss it. Drop duplicates and one-offs. Keep only notes that would change future runs.
 2. Update or create skills in `.claude/skills/<name>/SKILL.md` for `[skill:*]` notes. Keep edits minimal. Edit existing skills before adding new ones.
 3. Update or create hooks for `[hook:*]` notes. Put scripts in `.claude/hooks/`. Register them in `.claude/settings.json` (create it if absent; merge, never overwrite). Use a script that runs on the user's platform; no new dependencies. Run each new hook once to confirm it works.
 4. Add `[rule]` notes to `AGENTS.md`.

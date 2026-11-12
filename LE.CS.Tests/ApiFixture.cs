@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace LE.CS.Tests;
 
-public sealed class ApiFixture : WebApplicationFactory<Program>
+public sealed class ApiFixture(string? dataDir = null) : WebApplicationFactory<Program>
 {
-    public string DataDir { get; } = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+    public string DataDir { get; } = dataDir ?? Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
     protected override void ConfigureWebHost(IWebHostBuilder builder) => builder.UseSetting("DATA_DIR", DataDir);
 

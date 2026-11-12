@@ -4,7 +4,7 @@
   - **Test:** `docker compose run --rm tests` - builds the `tests` target and runs `dotnet test`.
   - **Done when:** green on arrival (exit 0); full suite green.
 
-- [ ] T2 (AC7) (characterization) Reopen a data directory with a new instance
+- [x] T2 (AC7) (characterization) Reopen a data directory with a new instance
   - **Test:** `StorageTests.New_Instance_Reads_Prior_Instance_Data` - give `ApiFixture` an optional `dataDir` argument. Instance A PUTs `/books/1` twice. Start instance B on A's `DataDir`. Assert B `GET /books/1` returns the second body and `GET /books/1/versions` is `[1,2]`.
   - **Done when:** green on arrival; full suite green.
 

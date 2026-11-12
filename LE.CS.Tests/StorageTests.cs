@@ -29,4 +29,17 @@ public class StorageTests
         var text = File.ReadAllText(Path.Combine(api.DataDir, "books", "1.jsonl"));
         Assert.Equal("1\n2\n3\n", text);
     }
+
+    [Fact]
+    public async Task New_Instance_Reads_Prior_Instance_Data()
+    {
+        using var first = new ApiFixture();
+        var a = first.CreateClient();
+        await a.PutJson("/books/1", """{"v":1}""");
+        await a.PutJson("/books/1", """{"v":2}""");
+        using var second = new ApiFixture(first.DataDir);
+        var b = second.CreateClient();
+        Assert.Equal("""{"v":2}""", await b.GetStringAsync("/books/1"));
+        Assert.Equal("[1,2]", await b.GetStringAsync("/books/1/versions"));
+    }
 }

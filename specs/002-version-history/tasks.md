@@ -24,7 +24,7 @@
   - **Test:** `VersionTests.Post_On_Existing_Returns_Version_2` - PUT `/books/1`, POST `/books/1`, assert POST 200 and body `{"version":2}`.
   - **Done when:** green on arrival; full suite green.
 
-- [ ] T7 (AC7) (characterization) Keep identical bodies as new versions
+- [x] T7 (AC7) (characterization) Keep identical bodies as new versions
   - **Test:** `VersionTests.Identical_Put_Adds_Version` - PUT the same body twice, assert second response 200 and `GET /books/1/versions` is `[1,2]`.
   - **Done when:** green on arrival; full suite green.
 

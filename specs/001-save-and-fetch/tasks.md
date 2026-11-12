@@ -84,7 +84,7 @@
   - **Test:** `ValidationTests.Put_Id100_Returns200` - PUT `/books/{100 x 'a'}`, assert 200.
   - **Done when:** red or already-green noted; suite green.
 
-- [ ] T21 (AC20) Reject a 101-character id
+- [x] T21 (AC20) Reject a 101-character id
   - **Test:** `ValidationTests.Put_Id101_Returns400` - PUT `/books/{101 x 'a'}`, assert 400.
   - **Done when:** red, then green; suite green.
 

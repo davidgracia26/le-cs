@@ -36,7 +36,7 @@
   - **Test:** PUT `/books/1` twice with different bodies, `docker compose down`, `docker compose up -d`; curl `GET /books/1` returns the second body and `GET /books/1/versions` returns `[1,2]`.
   - **Done when:** green on arrival; full suite green.
 
-- [ ] T10 (AC11) Start `api` and wait from `demo`
+- [x] T10 (AC11) Start `api` and wait from `demo`
   - **Test:** `docker compose down`, then `docker compose run --rm demo` - `demo.sh` sends one request and exits 0 only if `api` answered; `docker compose ps api` shows `api` running afterward.
   - **Done when:** red (`no such service: demo`), then green with a `demo` service (`curlimages/curl`, `profiles: ["demo"]`, `depends_on: api`, mounts `demo/demo.sh`) and a retry loop in `demo.sh` that waits for `api` to accept connections; full suite green.
 

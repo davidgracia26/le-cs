@@ -7,6 +7,14 @@ services:
       - "${PORT:-8080}:8080"
     volumes:
       - data:/data
+  demo:
+    profiles: ["demo"]
+    image: curlimages/curl
+    depends_on:
+      - api
+    volumes:
+      - ./demo:/demo:ro
+    entrypoint: ["sh", "/demo/demo.sh"]
   tests:
     profiles: ["tests"]
     build:

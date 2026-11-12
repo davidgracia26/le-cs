@@ -40,7 +40,7 @@
   - **Test:** `VersionTests.Version_Abc_Returns404` - PUT `/books/1`, GET `/books/1/versions/abc`, assert 404.
   - **Done when:** red or already-green noted; full suite green.
 
-- [ ] T11 (AC11) Return 404 for versions of a missing document
+- [x] T11 (AC11) Return 404 for versions of a missing document
   - **Test:** `VersionTests.Versions_Of_Missing_Returns404` - GET `/books/missing/versions`, assert 404.
   - **Done when:** red (200 `[]` or exception), then green; full suite green.
 

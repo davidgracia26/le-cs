@@ -12,7 +12,7 @@
   - **Test:** `VersionTests.Versions_Lists_1_2_3` - three PUTs, GET `/books/1/versions`, assert 200, `Content-Type: application/json`, body `[1,2,3]`.
   - **Done when:** red (404), then green with `GET /{collection}/{id}/versions`; full suite green.
 
-- [ ] T4 (AC4) Fetch version 1
+- [x] T4 (AC4) Fetch version 1
   - **Test:** `VersionTests.Version_1_Returns_First_Body` - two PUTs, GET `/books/1/versions/1`, assert 200, `Content-Type: application/json`, body equals the first PUT body.
   - **Done when:** red (404), then green with `GET /{collection}/{id}/versions/{n}`; full suite green.
 

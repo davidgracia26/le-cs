@@ -36,4 +36,17 @@ public class VersionTests
         Assert.Equal("application/json", res.Content.Headers.ContentType?.MediaType);
         Assert.Equal("[1,2,3]", await res.Content.ReadAsStringAsync());
     }
+
+    [Fact]
+    public async Task Version_1_Returns_First_Body()
+    {
+        using var api = new ApiFixture();
+        var client = api.CreateClient();
+        await client.PutJson("/books/1", """{"v":1}""");
+        await client.PutJson("/books/1", """{"v":2}""");
+        var res = await client.GetAsync("/books/1/versions/1");
+        Assert.Equal(HttpStatusCode.OK, res.StatusCode);
+        Assert.Equal("application/json", res.Content.Headers.ContentType?.MediaType);
+        Assert.Equal("""{"v":1}""", await res.Content.ReadAsStringAsync());
+    }
 }

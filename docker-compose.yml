@@ -1,4 +1,10 @@
 services:
+  api:
+    build:
+      context: .
+      target: api
+    ports:
+      - "${PORT:-8080}:8080"
   tests:
     profiles: ["tests"]
     build:

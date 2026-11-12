@@ -20,7 +20,7 @@
   - **Test:** `git ls-files LE.CS.Api LE.CS.Tests` lists no `bin/` or `obj/` path, and `.gitignore` and `.dockerignore` each contain `bin/` and `obj/` lines (read both files).
   - **Done when:** green on arrival (no matching path, both lines present); full suite green.
 
-- [ ] T6 (AC1) Start the API on host port 8080
+- [x] T6 (AC1) Start the API on host port 8080
   - **Test:** `docker compose up --build -d`, then `docker compose port api 8080` prints `0.0.0.0:8080`; after `docker compose down`, `PORT=9090 docker compose up -d` and the same command print `0.0.0.0:9090`.
   - **Done when:** red (`no such service: api`), then green with an `aspnet:9.0` runtime stage in `Dockerfile` that runs as `app`, and an `api` service in `docker-compose.yml` with `ports: "${PORT:-8080}:8080"`; `docker compose down`; full suite green.
 

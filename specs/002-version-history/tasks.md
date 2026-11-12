@@ -1,6 +1,6 @@
 # Tasks: Version history
 
-- [ ] T1 (AC1) Return version 2 on the second PUT
+- [x] T1 (AC1) Return version 2 on the second PUT
   - **Test:** `VersionTests.Second_Put_Returns_Version_2` - PUT `/books/1` `{"version":1}` then `{"title":"Other"}`, assert second response 200 and body `{"version":2}`.
   - **Done when:** red (body `{"version":1}`), then green by returning the line count from `Save`; full suite green.
 

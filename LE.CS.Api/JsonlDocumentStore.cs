@@ -11,8 +11,9 @@ public sealed class JsonlDocumentStore(IConfiguration config) : IDocumentStore
     public int Save(string collection, string id, JsonElement doc)
     {
         Directory.CreateDirectory(Path.Combine(root, collection));
-        File.AppendAllText(Path.Combine(root, collection, id + ".jsonl"), JsonSerializer.Serialize(doc, Compact) + "\n");
-        return 1;
+        var path = Path.Combine(root, collection, id + ".jsonl");
+        File.AppendAllText(path, JsonSerializer.Serialize(doc, Compact) + "\n");
+        return File.ReadLines(path).Count();
     }
 
     public string? Get(string collection, string id)

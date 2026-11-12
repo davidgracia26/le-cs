@@ -60,7 +60,7 @@
   - **Test:** `VersionTests.Put_Leaves_Other_Documents_Unchanged` - PUT `/books/1` twice and `/books/2` once, assert `/books/1/versions` is `[1,2]` and `/books/2/versions` is `[1]`.
   - **Done when:** red or already-green noted; full suite green.
 
-- [ ] T16 (AC16) (characterization) Add no version on a failed PUT
+- [x] T16 (AC16) (characterization) Add no version on a failed PUT
   - **Test:** `VersionTests.Failed_Put_Adds_No_Version` - PUT valid body, PUT `{bad` (assert 400), assert `/books/1/versions` is `[1]`.
   - **Done when:** green on arrival; full suite green.
 

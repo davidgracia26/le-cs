@@ -141,4 +141,15 @@ public class VersionTests
         Assert.Equal("[1,2]", await client.GetStringAsync("/books/1/versions"));
         Assert.Equal("[1]", await client.GetStringAsync("/books/2/versions"));
     }
+
+    [Fact]
+    public async Task Failed_Put_Adds_No_Version()
+    {
+        using var api = new ApiFixture();
+        var client = api.CreateClient();
+        await client.PutJson("/books/1", """{"v":1}""");
+        var bad = await client.PutJson("/books/1", "{bad");
+        Assert.Equal(HttpStatusCode.BadRequest, bad.StatusCode);
+        Assert.Equal("[1]", await client.GetStringAsync("/books/1/versions"));
+    }
 }

@@ -16,7 +16,7 @@
   - **Test:** existing `SaveTests.Post_Returns_Version_1` and `VersionTests.Second_Post_Returns_Version_2` cover this; add no test.
   - **Done when:** both tests green by name in `docker compose run --rm tests`; full suite green.
 
-- [ ] T5 (AC6) Use POST in the demo
+- [x] T5 (AC6) Use POST in the demo
   - **Test:** `docker compose down -v`, then `docker compose run --rm demo` exits 0.
   - **Done when:** red (non-zero: `demo.sh` sends `PUT`, now 405), then green with `demo.sh` using `-X POST` and `POST first` / `POST second` check labels; `docker compose down -v`; full suite green.
 

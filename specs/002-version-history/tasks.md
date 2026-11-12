@@ -28,7 +28,7 @@
   - **Test:** `VersionTests.Identical_Put_Adds_Version` - PUT the same body twice, assert second response 200 and `GET /books/1/versions` is `[1,2]`.
   - **Done when:** green on arrival; full suite green.
 
-- [ ] T8 (AC8) (characterization) Return 404 above the last version
+- [x] T8 (AC8) (characterization) Return 404 above the last version
   - **Test:** `VersionTests.Version_Beyond_Last_Returns404` - three PUTs, GET `/books/1/versions/9`, assert 404.
   - **Done when:** green on arrival; full suite green.
 

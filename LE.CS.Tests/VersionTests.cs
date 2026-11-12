@@ -83,4 +83,14 @@ public class VersionTests
         Assert.Equal(HttpStatusCode.OK, res.StatusCode);
         Assert.Equal("[1,2]", await client.GetStringAsync("/books/1/versions"));
     }
+
+    [Fact]
+    public async Task Version_Beyond_Last_Returns404()
+    {
+        using var api = new ApiFixture();
+        var client = api.CreateClient();
+        foreach (var body in new[] { "1", "2", "3" }) await client.PutJson("/books/1", body);
+        var res = await client.GetAsync("/books/1/versions/9");
+        Assert.Equal(HttpStatusCode.NotFound, res.StatusCode);
+    }
 }

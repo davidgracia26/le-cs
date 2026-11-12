@@ -4,7 +4,7 @@
   - **Test:** replace `Helpers.PutJson` with `PostJson` (`client.PostAsync`). Change every `PutJson` and `PutAsync` call in `LE.CS.Tests` to POST and rename `Put_*` tests to `Post_*`. Where a renamed test now duplicates an existing POST test (the `PostAsync` tests in `SaveTests`, `VersionTests`, `FetchTests`), keep one copy.
   - **Done when:** green on arrival (POST already saves); a case-sensitive search for `Put` in `LE.CS.Tests` finds nothing (T2 and T3 add the only `Put` uses later); full suite green.
 
-- [ ] T2 (AC1) Reject PUT on a new document
+- [x] T2 (AC1) Reject PUT on a new document
   - **Test:** `PutRemovedTests.Put_Returns405` - `PUT /books/1` with `{"title":"Dune"}` -> 405. Use `HttpClient.PutAsync` directly, not a helper.
   - **Done when:** red (200), then green with the save route mapped to `POST` only in `Program.cs`; full suite green.
 

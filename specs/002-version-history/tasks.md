@@ -32,7 +32,7 @@
   - **Test:** `VersionTests.Version_Beyond_Last_Returns404` - three PUTs, GET `/books/1/versions/9`, assert 404.
   - **Done when:** green on arrival; full suite green.
 
-- [ ] T9 (AC9) Return 404 for version 0
+- [x] T9 (AC9) Return 404 for version 0
   - **Test:** `VersionTests.Version_0_Returns404` - PUT `/books/1`, GET `/books/1/versions/0`, assert 404.
   - **Done when:** red (exception or wrong status), then green with the `^[1-9][0-9]*$` check; full suite green.
 

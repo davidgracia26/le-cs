@@ -61,4 +61,15 @@ public class VersionTests
         Assert.Equal(HttpStatusCode.OK, res.StatusCode);
         Assert.Equal("""{"v":2}""", await res.Content.ReadAsStringAsync());
     }
+
+    [Fact]
+    public async Task Post_On_Existing_Returns_Version_2()
+    {
+        using var api = new ApiFixture();
+        var client = api.CreateClient();
+        await client.PutJson("/books/1", """{"v":1}""");
+        var res = await client.PostAsync("/books/1", new StringContent("""{"v":2}""", System.Text.Encoding.UTF8, "application/json"));
+        Assert.Equal(HttpStatusCode.OK, res.StatusCode);
+        Assert.Equal("""{"version":2}""", await res.Content.ReadAsStringAsync());
+    }
 }

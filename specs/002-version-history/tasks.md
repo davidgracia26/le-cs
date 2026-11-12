@@ -20,7 +20,7 @@
   - **Test:** `VersionTests.Version_2_Returns_Second_Body` - two PUTs, GET `/books/1/versions/2`, assert 200 and body equals the second PUT body.
   - **Done when:** green on arrival; full suite green.
 
-- [ ] T6 (AC6) (characterization) Version on POST
+- [x] T6 (AC6) (characterization) Version on POST
   - **Test:** `VersionTests.Post_On_Existing_Returns_Version_2` - PUT `/books/1`, POST `/books/1`, assert POST 200 and body `{"version":2}`.
   - **Done when:** green on arrival; full suite green.
 

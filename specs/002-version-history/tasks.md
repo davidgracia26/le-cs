@@ -16,7 +16,7 @@
   - **Test:** `VersionTests.Version_1_Returns_First_Body` - two PUTs, GET `/books/1/versions/1`, assert 200, `Content-Type: application/json`, body equals the first PUT body.
   - **Done when:** red (404), then green with `GET /{collection}/{id}/versions/{n}`; full suite green.
 
-- [ ] T5 (AC5) (characterization) Fetch version 2
+- [x] T5 (AC5) (characterization) Fetch version 2
   - **Test:** `VersionTests.Version_2_Returns_Second_Body` - two PUTs, GET `/books/1/versions/2`, assert 200 and body equals the second PUT body.
   - **Done when:** green on arrival; full suite green.
 

@@ -12,7 +12,7 @@
   - **Test:** `PutRemovedTests.Put_On_Existing_Returns405_And_Adds_No_Version` - POST `/books/1` twice, `PUT /books/1` -> 405, `GET /books/1/versions` is `[1,2]`.
   - **Done when:** green on arrival; full suite green.
 
-- [ ] T4 (AC3) (characterization) Keep POST behavior
+- [x] T4 (AC3) (characterization) Keep POST behavior
   - **Test:** existing `SaveTests.Post_Returns_Version_1` and `VersionTests.Second_Post_Returns_Version_2` cover this; add no test.
   - **Done when:** both tests green by name in `docker compose run --rm tests`; full suite green.
 

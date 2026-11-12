@@ -129,4 +129,16 @@ public class VersionTests
         var res = await api.CreateClient().GetAsync("/books/missing/versions/1");
         Assert.Equal(HttpStatusCode.NotFound, res.StatusCode);
     }
+
+    [Fact]
+    public async Task Put_Leaves_Other_Documents_Unchanged()
+    {
+        using var api = new ApiFixture();
+        var client = api.CreateClient();
+        await client.PutJson("/books/1", """{"v":1}""");
+        await client.PutJson("/books/2", """{"v":1}""");
+        await client.PutJson("/books/1", """{"v":2}""");
+        Assert.Equal("[1,2]", await client.GetStringAsync("/books/1/versions"));
+        Assert.Equal("[1]", await client.GetStringAsync("/books/2/versions"));
+    }
 }

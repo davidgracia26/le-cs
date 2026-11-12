@@ -56,7 +56,7 @@
   - **Test:** `ValidationTests.Version_BadId_Returns400` - GET `/books/bad.id/versions/1`, assert 400.
   - **Done when:** red (404), then green with name checks before the version check; full suite green.
 
-- [ ] T15 (AC15) Isolate documents
+- [x] T15 (AC15) Isolate documents
   - **Test:** `VersionTests.Put_Leaves_Other_Documents_Unchanged` - PUT `/books/1` twice and `/books/2` once, assert `/books/1/versions` is `[1,2]` and `/books/2/versions` is `[1]`.
   - **Done when:** red or already-green noted; full suite green.
 

@@ -56,10 +56,10 @@
   - **Test:** `docker compose run --rm -e API=http://api:1 demo` exits non-zero. `docker compose down -v` then `docker compose run --rm demo` exits 0.
   - **Done when:** red (exit 0 with failing checks), then green with `set -e` and a `check` helper that prints the failure and exits 1; full suite green.
 
-- [ ] T15 (AC2) (characterization) Start `api` only on `up`
+- [x] T15 (AC2) (characterization) Start `api` only on `up`
   - **Test:** `docker compose down`, `docker compose up -d`, `docker compose ps --services` prints only `api`.
   - **Done when:** green on arrival (`tests` and `demo` carry `profiles`); full suite green.
 
-- [ ] T16 (AC10) List the exact commands in `README.md`
+- [x] T16 (AC10) List the exact commands in `README.md`
   - **Test:** run each command in `README.md` as written: `docker compose up --build`, `docker compose run --rm tests`, `docker compose run --rm demo`, `docker compose down`. Each exits 0 (stop `up` after the API logs a listening address).
   - **Done when:** red (`demo verify` fails: out of scope and unimplemented), then green after removing that line; commands match the final compose services; full suite green.

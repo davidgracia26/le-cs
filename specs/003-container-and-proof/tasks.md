@@ -8,15 +8,15 @@
   - **Test:** `StorageTests.New_Instance_Reads_Prior_Instance_Data` - give `ApiFixture` an optional `dataDir` argument. Instance A PUTs `/books/1` twice. Start instance B on A's `DataDir`. Assert B `GET /books/1` returns the second body and `GET /books/1/versions` is `[1,2]`.
   - **Done when:** green on arrival; full suite green.
 
-- [ ] T3 (AC9) (characterization) Write under the configured `DATA_DIR`
+- [x] T3 (AC9) (characterization) Write under the configured `DATA_DIR`
   - **Test:** `StorageTests.Data_Dir_Setting_Sets_Write_Path` - `ApiFixture` with a temp `DATA_DIR`, PUT `/books/1`, assert `{DataDir}/books/1.jsonl` exists.
   - **Done when:** green on arrival; full suite green.
 
-- [ ] T4 (AC8) (characterization) Default to `/data`
+- [x] T4 (AC8) (characterization) Default to `/data`
   - **Test:** `StorageTests.Unset_Data_Dir_Writes_Under_Slash_Data` - build `JsonlDocumentStore` from an empty `IConfiguration`, `Save` a unique collection and id, assert `/data/{collection}/{id}.jsonl` exists, then delete that collection folder. Runs in the `tests` container.
   - **Done when:** green on arrival; full suite green.
 
-- [ ] T5 (AC16) (characterization) Ignore `bin/` and `obj/`
+- [x] T5 (AC16) (characterization) Ignore `bin/` and `obj/`
   - **Test:** `git ls-files LE.CS.Api LE.CS.Tests` lists no `bin/` or `obj/` path, and `.gitignore` and `.dockerignore` each contain `bin/` and `obj/` lines (read both files).
   - **Done when:** green on arrival (no matching path, both lines present); full suite green.
 

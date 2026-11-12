@@ -1,3 +1,7 @@
+using System.Text.Json;
+using LE.CS.Api;
+using Microsoft.Extensions.Configuration;
+
 namespace LE.CS.Tests;
 
 public class StorageTests
@@ -28,6 +32,29 @@ public class StorageTests
         foreach (var body in new[] { "1", "2", "3" }) await client.PutJson("/books/1", body);
         var text = File.ReadAllText(Path.Combine(api.DataDir, "books", "1.jsonl"));
         Assert.Equal("1\n2\n3\n", text);
+    }
+
+    [Fact]
+    public async Task Data_Dir_Setting_Sets_Write_Path()
+    {
+        using var api = new ApiFixture();
+        await api.CreateClient().PutJson("/books/1", "{}");
+        Assert.True(File.Exists(Path.Combine(api.DataDir, "books", "1.jsonl")));
+    }
+
+    [Fact]
+    public void Unset_Data_Dir_Writes_Under_Slash_Data()
+    {
+        var collection = "t-" + Guid.NewGuid().ToString("N");
+        try
+        {
+            new JsonlDocumentStore(new ConfigurationBuilder().Build()).Save(collection, "1", JsonSerializer.Deserialize<JsonElement>("{}"));
+            Assert.True(File.Exists($"/data/{collection}/1.jsonl"));
+        }
+        finally
+        {
+            Directory.Delete($"/data/{collection}", true);
+        }
     }
 
     [Fact]

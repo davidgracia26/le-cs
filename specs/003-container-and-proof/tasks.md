@@ -48,7 +48,7 @@
   - **Test:** `docker compose run --rm demo` - after two PUTs with different bodies, `GET /demo/1` must equal the second body.
   - **Done when:** red (check absent; flip the expected body and see non-zero), then green with the real expected body; full suite green.
 
-- [ ] T13 (AC14) Check the version list and the first version
+- [x] T13 (AC14) Check the version list and the first version
   - **Test:** `docker compose run --rm demo` - `GET /demo/1/versions` must equal `[1,2]` and `GET /demo/1/versions/1` must equal the first body.
   - **Done when:** red (checks absent; flip an expected value and see non-zero), then green; full suite green.
 

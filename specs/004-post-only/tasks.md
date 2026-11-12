@@ -24,6 +24,6 @@
   - **Test:** search `AGENTS.md` and `README.md` for `PUT` (case-sensitive). Result must be empty.
   - **Done when:** red (4 matches in `AGENTS.md`), then green with the API, storage, and content-type lines naming `POST` only; full suite green.
 
-- [ ] T7 (AC5) (characterization) Run the suite through compose
+- [x] T7 (AC5) (characterization) Run the suite through compose
   - **Test:** `docker compose run --rm tests` exits 0.
   - **Done when:** green on arrival (exit 0); full suite green.

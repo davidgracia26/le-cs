@@ -68,6 +68,6 @@
   - **Test:** `StorageTests.File_Has_One_Line_Per_Version` - temp `DATA_DIR`, three PUTs, read `books/1.jsonl`, assert exactly 3 lines and text ends with `\n`.
   - **Done when:** red or already-green noted; full suite green.
 
-- [ ] T18 (AC18) Serialize concurrent PUTs
+- [x] T18 (AC18) Serialize concurrent PUTs
   - **Test:** `ConcurrencyTests.Concurrent_Puts_Keep_All_Versions` - 50 parallel PUTs of distinct bodies to `/books/1`, assert all 200, `/books/1/versions` is `[1..50]`, each version parses as JSON and equals a sent body, no body repeats.
   - **Done when:** red (duplicate version numbers or interleaved lines), then green with a per-document `SemaphoreSlim` around append and count; full suite green.

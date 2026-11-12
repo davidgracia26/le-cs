@@ -24,7 +24,7 @@
   - **Test:** `docker compose up --build -d`, then `docker compose port api 8080` prints `0.0.0.0:8080`; after `docker compose down`, `PORT=9090 docker compose up -d` and the same command print `0.0.0.0:9090`.
   - **Done when:** red (`no such service: api`), then green with an `aspnet:9.0` runtime stage in `Dockerfile` that runs as `app`, and an `api` service in `docker-compose.yml` with `ports: "${PORT:-8080}:8080"`; `docker compose down`; full suite green.
 
-- [ ] T7 (AC3) Save a document in the running container
+- [x] T7 (AC3) Save a document in the running container
   - **Test:** `docker compose up --build -d`, then `docker run --rm --network le-cs_default curlimages/curl -s -o /dev/null -w "%{http_code}" -X PUT -d "{}" http://api:8080/books/1` prints `200`.
   - **Done when:** red (`500`, write denied for `app`), then green with `/data` created and `chown`ed to `app` in the runtime stage and a named volume mounted at `/data`; full suite green.
 

@@ -5,9 +5,14 @@ services:
       target: api
     ports:
       - "${PORT:-8080}:8080"
+    volumes:
+      - data:/data
   tests:
     profiles: ["tests"]
     build:
       context: .
       target: tests
     pull_policy: build
+
+volumes:
+  data:

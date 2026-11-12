@@ -14,5 +14,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS api
 WORKDIR /app
 COPY --from=publish /out .
 ENV ASPNETCORE_URLS=http://+:8080
+RUN mkdir /data && chown app /data
 USER app
 ENTRYPOINT ["dotnet", "LE.CS.Api.dll"]

@@ -103,4 +103,14 @@ public class VersionTests
         var res = await client.GetAsync("/books/1/versions/0");
         Assert.Equal(HttpStatusCode.NotFound, res.StatusCode);
     }
+
+    [Fact]
+    public async Task Version_Abc_Returns404()
+    {
+        using var api = new ApiFixture();
+        var client = api.CreateClient();
+        await client.PutJson("/books/1", """{"v":1}""");
+        var res = await client.GetAsync("/books/1/versions/abc");
+        Assert.Equal(HttpStatusCode.NotFound, res.StatusCode);
+    }
 }

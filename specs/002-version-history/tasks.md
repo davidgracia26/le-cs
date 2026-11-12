@@ -36,7 +36,7 @@
   - **Test:** `VersionTests.Version_0_Returns404` - PUT `/books/1`, GET `/books/1/versions/0`, assert 404.
   - **Done when:** red (exception or wrong status), then green with the `^[1-9][0-9]*$` check; full suite green.
 
-- [ ] T10 (AC10) Return 404 for a non-numeric version
+- [x] T10 (AC10) Return 404 for a non-numeric version
   - **Test:** `VersionTests.Version_Abc_Returns404` - PUT `/books/1`, GET `/books/1/versions/abc`, assert 404.
   - **Done when:** red or already-green noted; full suite green.
 

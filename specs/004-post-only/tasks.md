@@ -20,7 +20,7 @@
   - **Test:** `docker compose down -v`, then `docker compose run --rm demo` exits 0.
   - **Done when:** red (non-zero: `demo.sh` sends `PUT`, now 405), then green with `demo.sh` using `-X POST` and `POST first` / `POST second` check labels; `docker compose down -v`; full suite green.
 
-- [ ] T6 (AC7) Remove PUT from the docs
+- [x] T6 (AC7) Remove PUT from the docs
   - **Test:** search `AGENTS.md` and `README.md` for `PUT` (case-sensitive). Result must be empty.
   - **Done when:** red (4 matches in `AGENTS.md`), then green with the API, storage, and content-type lines naming `POST` only; full suite green.
 

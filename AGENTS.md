@@ -85,20 +85,20 @@ Keep project names. Do not restructure.
 
 ## Storage
 
-- Write one file per document: `{DATA_DIR}/{collection}/{id}.jsonl`. One compact line per version. Update appends a line. Store the body as sent, compacted. Every PUT/POST adds a version, even when the body is identical to the last. Do not dedupe or normalize.
+- Write one file per document: `{DATA_DIR}/{collection}/{id}.jsonl`. One compact line per version. Update appends a line. Store the body as sent, compacted. Every POST adds a version, even when the body is identical to the last. Do not dedupe or normalize.
 - Latest version is the last line. Version *n* is line *n*. List ids by listing files in the collection folder.
 - Read `DATA_DIR` from config/env. Default `/data`. Tests use a temp directory.
 - Mount `/data` as a **named volume** in compose. No bind mount.
 - Runtime images run as non-root `app`. In the Dockerfile, create `/data` and `chown` it to `app`. Fresh named volumes fail writes otherwise.
 - Allow only `[A-Za-z0-9_-]`, 1 to 100 characters, in `collection` and `id`. Return 400 otherwise. Blocks path traversal and over-long filenames.
 - Write each version as one line plus `\n` in a single append. Use `UnsafeRelaxedJsonEscaping`. Write `JsonElement` values so number text and key order stay unchanged.
-- Accept PUT bodies with any `Content-Type`. Read the raw body.
+- Accept POST bodies with any `Content-Type`. Read the raw body.
 - Accept version `n` only if it matches `^[1-9][0-9]*$` and fits in an `int`. Return 404 otherwise.
-- Lock per document (`SemaphoreSlim`). Concurrent PUTs must not interleave lines.
+- Lock per document (`SemaphoreSlim`). Concurrent POSTs must not interleave lines.
 
 ## API
 
-- `PUT /{collection}/{id}` - save document (any JSON body). Keep the prior version. `POST` on the same route does the same (the brief says "POST a document").
+- `POST /{collection}/{id}` - save document (any JSON body). Keep the prior version.
 - `GET /{collection}/{id}` - latest version. 404 if missing.
 - `GET /{collection}` - list ids.
 - `GET /{collection}/{id}/versions` - list versions.

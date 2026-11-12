@@ -6,7 +6,7 @@ builder.Services.AddSingleton<IDocumentStore, JsonlDocumentStore>();
 
 var app = builder.Build();
 
-app.MapPut("/{collection}/{id}", async (string collection, string id, HttpRequest req, IDocumentStore store) =>
+app.MapMethods("/{collection}/{id}", ["PUT", "POST"], async (string collection, string id, HttpRequest req, IDocumentStore store) =>
 {
     if (!Names.Valid(collection) || !Names.Valid(id)) return Results.BadRequest();
     try

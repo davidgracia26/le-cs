@@ -96,7 +96,7 @@
   - **Test:** `ValidationTests.Put_Collection101_Returns400` - PUT `/{101 x 'a'}/1`, assert 400.
   - **Done when:** red, then green; suite green.
 
-- [ ] T24 (AC23) Save with POST
+- [x] T24 (AC23) Save with POST
   - **Test:** `SaveTests.Post_Returns_Version_1` - POST `/books/1` `{"title":"Dune"}`, assert 200 and body `{"version":1}`.
   - **Done when:** red (405), then green by mapping POST to the PUT handler; suite green.
 

@@ -15,6 +15,15 @@ public class SaveTests
     }
 
     [Fact]
+    public async Task Post_Returns_Version_1()
+    {
+        using var api = new ApiFixture();
+        var res = await api.CreateClient().PostAsync("/books/1", new StringContent("""{"title":"Dune"}""", Encoding.UTF8, "application/json"));
+        Assert.Equal(HttpStatusCode.OK, res.StatusCode);
+        Assert.Equal("""{"version":1}""", await res.Content.ReadAsStringAsync());
+    }
+
+    [Fact]
     public async Task Put_TextPlain_Returns200()
     {
         using var api = new ApiFixture();

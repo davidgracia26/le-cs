@@ -64,7 +64,7 @@
   - **Test:** `VersionTests.Failed_Put_Adds_No_Version` - PUT valid body, PUT `{bad` (assert 400), assert `/books/1/versions` is `[1]`.
   - **Done when:** green on arrival; full suite green.
 
-- [ ] T17 (AC17) Write n lines ending with a newline
+- [x] T17 (AC17) Write n lines ending with a newline
   - **Test:** `StorageTests.File_Has_One_Line_Per_Version` - temp `DATA_DIR`, three PUTs, read `books/1.jsonl`, assert exactly 3 lines and text ends with `\n`.
   - **Done when:** red or already-green noted; full suite green.
 

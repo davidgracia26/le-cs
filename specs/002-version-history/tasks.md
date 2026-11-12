@@ -44,7 +44,7 @@
   - **Test:** `VersionTests.Versions_Of_Missing_Returns404` - GET `/books/missing/versions`, assert 404.
   - **Done when:** red (200 `[]` or exception), then green; full suite green.
 
-- [ ] T12 (AC12) Return 404 for a version of a missing document
+- [x] T12 (AC12) Return 404 for a version of a missing document
   - **Test:** `VersionTests.Version_Of_Missing_Returns404` - GET `/books/missing/versions/1`, assert 404.
   - **Done when:** red (exception) or already-green noted; full suite green.
 

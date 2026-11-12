@@ -121,4 +121,12 @@ public class VersionTests
         var res = await api.CreateClient().GetAsync("/books/missing/versions");
         Assert.Equal(HttpStatusCode.NotFound, res.StatusCode);
     }
+
+    [Fact]
+    public async Task Version_Of_Missing_Returns404()
+    {
+        using var api = new ApiFixture();
+        var res = await api.CreateClient().GetAsync("/books/missing/versions/1");
+        Assert.Equal(HttpStatusCode.NotFound, res.StatusCode);
+    }
 }

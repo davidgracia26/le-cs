@@ -117,6 +117,8 @@ docker compose down                  # stop, keep volume
 
 Host port is `${PORT:-8080}`.
 
+`demo` saves under a run-unique id (`/proc/sys/kernel/random/uuid`). The named volume persists, so a fixed id breaks reruns.
+
 Set `pull_policy: build` on `tests`; otherwise `docker compose run` reuses a stale image. Run `docker compose build api` before `docker compose run --rm demo` after API edits; `api` has no `pull_policy`. Run `docker compose --progress quiet run --rm tests` for short output.
 
 Update when compose services are final.
